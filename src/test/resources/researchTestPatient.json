@@ -1,0 +1,26 @@
+{
+  "resourceType": "Patient",
+  "meta": {
+  	"lastUpdated": "2017-07-29T10:09:53.918-05:00",
+   	"profile": [
+    	"http://fhirtest.uhn.ca/baseDstu3/StructureDefinition/CIBMTRPatientTest"
+     ]
+  },
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns='http://www.w3.org/1999/xhtml'>Research Test Patient<a name='mm'/></div>"
+  },
+  "id": "CRID54321",
+  "name": [
+    {
+      "use": "official",
+      "given": [
+        "Test"
+      ],
+      "family": "Patient",
+      "text": "Test Patient"
+    }
+  ],
+  "birthDate": "1970-07-07",
+  "gender": "male"
+}

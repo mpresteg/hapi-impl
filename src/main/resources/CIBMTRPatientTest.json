@@ -1,0 +1,897 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "CIBMTRPatientTest",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2017-11-17T04:55:16.783-05:00"
+  },
+  "extension": [
+    {
+      "url": "http://clinfhir.com/StructureDefinition/userEmail",
+      "valueString": "mpresteg@gmail.com"
+    },
+    {
+      "url": "http://clinfhir.com/fhir/StructureDefinition/baseTypeForModel",
+      "valueString": "Patient"
+    }
+  ],
+  "url": "http://fhirtest.uhn.ca/baseDstu3/StructureDefinition/CIBMTRPatientTest",
+  "identifier": [
+    {
+      "system": "http://clinfhir.com",
+      "value": "author"
+    }
+  ],
+  "name": "CIBMTRPatientTest",
+  "title": "CIBMTR Patient",
+  "status": "draft",
+  "date": "2017-11-17T03:55:04-06:00",
+  "publisher": "Matt Prestegaard",
+  "purpose": "Try out the creation of a profile to meet the needs of a patient for research at CIBMTR",
+  "keyword": [
+    {
+      "system": "http://fhir.hl7.org.nz/NamingSystem/application",
+      "code": "clinfhir"
+    }
+  ],
+  "kind": "logical",
+  "abstract": false,
+  "type": "CIBMTRPatientTest",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Element",
+  "derivation": "specialization",
+  "snapshot": {
+    "element": [
+      {
+        "id": "CIBMTRPatientTest",
+        "path": "CIBMTRPatientTest",
+        "label": "CIBMTRPatientTest",
+        "definition": "No description",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "CIBMTRPatientTest",
+          "min": 0,
+          "max": "1"
+        }
+      },
+      {
+        "id": "CIBMTRPatientTest.identifier",
+        "path": "CIBMTRPatientTest.identifier",
+        "label": "identifier",
+        "short": "An identifier for this patient",
+        "definition": "An identifier for this patient.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "CIBMTRPatientTest.identifier",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Identifier"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.identifier|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.active",
+        "path": "CIBMTRPatientTest.active",
+        "label": "active",
+        "short": "Whether this patient's record is in active use",
+        "definition": "Whether this patient record is in active use.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "CIBMTRPatientTest.active",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.active|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.name",
+        "path": "CIBMTRPatientTest.name",
+        "label": "name",
+        "short": "A name associated with the patient",
+        "definition": "A name associated with the individual.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "CIBMTRPatientTest.name",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "HumanName"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.name|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.telecom",
+        "path": "CIBMTRPatientTest.telecom",
+        "label": "telecom",
+        "short": "A contact detail for the individual",
+        "definition": "A contact detail (e.g. a telephone number or an email address) by which the individual may be contacted.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "CIBMTRPatientTest.telecom",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "ContactPoint"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.telecom|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.gender",
+        "path": "CIBMTRPatientTest.gender",
+        "label": "gender",
+        "short": "male | female | other | unknown",
+        "definition": "Administrative Gender - the gender that the patient is considered to have for administration and record keeping purposes.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "CIBMTRPatientTest.gender",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "code"
+          }
+        ],
+        "binding": {
+          "strength": "required",
+          "description": "The gender of a person used for administrative purposes.",
+          "valueSetUri": "http://hl7.org/fhir/ValueSet/administrative-gender"
+        },
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.gender|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.birthDate",
+        "path": "CIBMTRPatientTest.birthDate",
+        "label": "birthDate",
+        "short": "The date of birth for the individual",
+        "definition": "The date of birth for the individual.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "CIBMTRPatientTest.birthDate",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "date"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.birthDate|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.deceased[x]",
+        "path": "CIBMTRPatientTest.deceased[x]",
+        "label": "deceased[x]",
+        "short": "Indicates if the individual is deceased or not",
+        "definition": "Indicates if the individual is deceased or not.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "CIBMTRPatientTest.deceased[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "boolean"
+          },
+          {
+            "code": "dateTime"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.deceased[x]|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.address",
+        "path": "CIBMTRPatientTest.address",
+        "label": "address",
+        "short": "Addresses for the individual",
+        "definition": "Addresses for the individual.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "CIBMTRPatientTest.address",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Address"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.address|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.maritalStatus",
+        "path": "CIBMTRPatientTest.maritalStatus",
+        "label": "maritalStatus",
+        "short": "Marital (civil) status of a patient",
+        "definition": "This field contains a patient's most recent marital (civil) status.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "CIBMTRPatientTest.maritalStatus",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "binding": {
+          "strength": "extensible",
+          "description": "The domestic partnership status of a person.",
+          "valueSetUri": "http://hl7.org/fhir/ValueSet/marital-status"
+        },
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.maritalStatus|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.multipleBirth[x]",
+        "path": "CIBMTRPatientTest.multipleBirth[x]",
+        "label": "multipleBirth[x]",
+        "short": "Whether patient is part of a multiple birth",
+        "definition": "Indicates whether the patient is part of a multiple (bool) or indicates the actual birth order (integer).",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "CIBMTRPatientTest.multipleBirth[x]",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "boolean"
+          },
+          {
+            "code": "integer"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.multipleBirth[x]|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.photo",
+        "path": "CIBMTRPatientTest.photo",
+        "label": "photo",
+        "short": "Image of the patient",
+        "definition": "Image of the patient.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "CIBMTRPatientTest.photo",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Attachment"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.photo|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.contact",
+        "path": "CIBMTRPatientTest.contact",
+        "label": "contact",
+        "short": "A contact party (e.g. guardian, partner, friend) for the patient",
+        "definition": "A contact party (e.g. guardian, partner, friend) for the patient.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "CIBMTRPatientTest.contact",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.contact|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.contact.relationship",
+        "path": "CIBMTRPatientTest.contact.relationship",
+        "label": "relationship",
+        "short": "The kind of relationship",
+        "definition": "The nature of the relationship between the patient and the contact person.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "CIBMTRPatientTest.contact.relationship",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "binding": {
+          "strength": "extensible",
+          "description": "The nature of the relationship between a patient and a contact person for that patient.",
+          "valueSetUri": "http://hl7.org/fhir/ValueSet/v2-0131"
+        },
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.contact.relationship|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.contact.name",
+        "path": "CIBMTRPatientTest.contact.name",
+        "label": "name",
+        "short": "A name associated with the contact person",
+        "definition": "A name associated with the contact person.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "CIBMTRPatientTest.contact.name",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "HumanName"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.contact.name|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.contact.telecom",
+        "path": "CIBMTRPatientTest.contact.telecom",
+        "label": "telecom",
+        "short": "A contact detail for the person",
+        "definition": "A contact detail for the person, e.g. a telephone number or an email address.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "CIBMTRPatientTest.contact.telecom",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "ContactPoint"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.contact.telecom|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.contact.address",
+        "path": "CIBMTRPatientTest.contact.address",
+        "label": "address",
+        "short": "Address for the contact person",
+        "definition": "Address for the contact person.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "CIBMTRPatientTest.contact.address",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Address"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.contact.address|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.contact.gender",
+        "path": "CIBMTRPatientTest.contact.gender",
+        "label": "gender",
+        "short": "male | female | other | unknown",
+        "definition": "Administrative Gender - the gender that the contact person is considered to have for administration and record keeping purposes.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "CIBMTRPatientTest.contact.gender",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "code"
+          }
+        ],
+        "binding": {
+          "strength": "required",
+          "description": "The gender of a person used for administrative purposes.",
+          "valueSetUri": "http://hl7.org/fhir/ValueSet/administrative-gender"
+        },
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.contact.gender|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.contact.organization",
+        "path": "CIBMTRPatientTest.contact.organization",
+        "label": "organization",
+        "short": "Organization that is associated with the contact",
+        "definition": "Organization on behalf of which the contact is acting or for which the contact is working.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "CIBMTRPatientTest.contact.organization",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/StructureDefinition/Organization"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.contact.organization|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.contact.period",
+        "path": "CIBMTRPatientTest.contact.period",
+        "label": "period",
+        "short": "The period during which this contact person or organization is valid to be contacted relating to this patient",
+        "definition": "The period during which this contact person or organization is valid to be contacted relating to this patient.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "CIBMTRPatientTest.contact.period",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Period"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.contact.period|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.animal",
+        "path": "CIBMTRPatientTest.animal",
+        "label": "animal",
+        "short": "This patient is known to be an animal (non-human)",
+        "definition": "This patient is known to be an animal.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "CIBMTRPatientTest.animal",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.animal|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.animal.species",
+        "path": "CIBMTRPatientTest.animal.species",
+        "label": "species",
+        "short": "E.g. Dog, Cow",
+        "definition": "Identifies the high level taxonomic categorization of the kind of animal.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "CIBMTRPatientTest.animal.species",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "binding": {
+          "strength": "example",
+          "description": "The species of an animal.",
+          "valueSetUri": "http://hl7.org/fhir/ValueSet/animal-species"
+        },
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.animal.species|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.animal.breed",
+        "path": "CIBMTRPatientTest.animal.breed",
+        "label": "breed",
+        "short": "E.g. Poodle, Angus",
+        "definition": "Identifies the detailed categorization of the kind of animal.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "CIBMTRPatientTest.animal.breed",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "binding": {
+          "strength": "example",
+          "description": "The breed of an animal.",
+          "valueSetUri": "http://hl7.org/fhir/ValueSet/animal-breeds"
+        },
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.animal.breed|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.animal.genderStatus",
+        "path": "CIBMTRPatientTest.animal.genderStatus",
+        "label": "genderStatus",
+        "short": "E.g. Neutered, Intact",
+        "definition": "Indicates the current state of the animal's reproductive organs.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "CIBMTRPatientTest.animal.genderStatus",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "binding": {
+          "strength": "example",
+          "description": "The state of the animal's reproductive organs.",
+          "valueSetUri": "http://hl7.org/fhir/ValueSet/animal-genderstatus"
+        },
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.animal.genderStatus|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.communication",
+        "path": "CIBMTRPatientTest.communication",
+        "label": "communication",
+        "short": "A list of Languages which may be used to communicate with the patient about his or her health",
+        "definition": "Languages which may be used to communicate with the patient about his or her health.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "CIBMTRPatientTest.communication",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.communication|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.communication.language",
+        "path": "CIBMTRPatientTest.communication.language",
+        "label": "language",
+        "short": "The language which can be used to communicate with the patient about his or her health",
+        "definition": "The ISO-639-1 alpha 2 code in lower case for the language, optionally followed by a hyphen and the ISO-3166-1 alpha 2 code for the region in upper case; e.g. \"en\" for English, or \"en-US\" for American English versus \"en-EN\" for England English.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "CIBMTRPatientTest.communication.language",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "binding": {
+          "strength": "extensible",
+          "description": "A human language.",
+          "valueSetUri": "http://hl7.org/fhir/ValueSet/languages"
+        },
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.communication.language|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.communication.preferred",
+        "path": "CIBMTRPatientTest.communication.preferred",
+        "label": "preferred",
+        "short": "Language preference indicator",
+        "definition": "Indicates whether or not the patient prefers this language (over other languages he masters up a certain level).",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "CIBMTRPatientTest.communication.preferred",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.communication.preferred|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.generalPractitioner",
+        "path": "CIBMTRPatientTest.generalPractitioner",
+        "label": "generalPractitioner",
+        "short": "Patient's nominated primary care provider",
+        "definition": "Patient's nominated care provider.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "CIBMTRPatientTest.generalPractitioner",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/StructureDefinition/Organization"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/StructureDefinition/Practitioner"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.generalPractitioner|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.managingOrganization",
+        "path": "CIBMTRPatientTest.managingOrganization",
+        "label": "managingOrganization",
+        "short": "Organization that is the custodian of the patient record",
+        "definition": "Organization that is the custodian of the patient record.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "CIBMTRPatientTest.managingOrganization",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/StructureDefinition/Organization"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.managingOrganization|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.link",
+        "path": "CIBMTRPatientTest.link",
+        "label": "link",
+        "short": "Link to another patient resource that concerns the same actual person",
+        "definition": "Link to another patient resource that concerns the same actual patient.",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "CIBMTRPatientTest.link",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "BackboneElement"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.link|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.link.other",
+        "path": "CIBMTRPatientTest.link.other",
+        "label": "other",
+        "short": "The other patient or related person resource that the link refers to",
+        "definition": "The other patient resource that the link refers to.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "CIBMTRPatientTest.link.other",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/StructureDefinition/Patient"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/StructureDefinition/RelatedPerson"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.link.other|"
+          }
+        ]
+      },
+      {
+        "id": "CIBMTRPatientTest.link.type",
+        "path": "CIBMTRPatientTest.link.type",
+        "label": "type",
+        "short": "replaced-by | replaces | refer | seealso - type of link",
+        "definition": "The type of link between this patient resource and another patient resource.",
+        "min": 1,
+        "max": "1",
+        "base": {
+          "path": "CIBMTRPatientTest.link.type",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "code"
+          }
+        ],
+        "binding": {
+          "strength": "required",
+          "description": "The type of link between this patient resource and another patient resource.",
+          "valueSetUri": "http://hl7.org/fhir/ValueSet/link-type"
+        },
+        "mapping": [
+          {
+            "identity": "fhir",
+            "map": "Patient.link.type|"
+          }
+        ]
+      }
+    ]	 }
+
+}

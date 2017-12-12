@@ -1,0 +1,24 @@
+{
+  "resourceType": "Patient",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns='http://www.w3.org/1999/xhtml'>Test Patient<a name='mm'/></div>"
+  },
+  "identifier": [
+    {
+      "system": "http://www.cibmtr.org",
+      "value": "CRID54321"
+    }
+  ],
+  "name": [
+    {
+      "use": "official",
+      "given": [
+        "Test"
+      ],
+      "family": "Patient",
+      "text": "Test Patient"
+    }
+  ],
+  "birthDate": "1970-07-07"
+}
