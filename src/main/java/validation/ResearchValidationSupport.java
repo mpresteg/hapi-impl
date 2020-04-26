@@ -14,14 +14,15 @@ import org.dash.hl7.FhirContextFactory;
 import org.dash.hl7.StructureDefinitionBundler;
 import org.hl7.fhir.dstu3.hapi.ctx.IValidationSupport;
 import org.hl7.fhir.dstu3.model.Bundle;
+import org.hl7.fhir.dstu3.model.Bundle.BundleEntryComponent;
 import org.hl7.fhir.dstu3.model.CodeSystem;
 import org.hl7.fhir.dstu3.model.StructureDefinition;
-import org.hl7.fhir.dstu3.model.Bundle.BundleEntryComponent;
 import org.hl7.fhir.dstu3.model.ValueSet.ConceptSetComponent;
 import org.hl7.fhir.dstu3.model.ValueSet.ValueSetExpansionComponent;
 import org.hl7.fhir.instance.model.api.IBaseResource;
 
 import ca.uhn.fhir.context.FhirContext;
+import ca.uhn.fhir.context.FhirVersionEnum;
 
 public class ResearchValidationSupport implements IValidationSupport {
 	private Map<String, StructureDefinition> myStructureDefinitions;
@@ -34,26 +35,22 @@ public class ResearchValidationSupport implements IValidationSupport {
 
 	@Override
 	public boolean isCodeSystemSupported(FhirContext theContext, String theSystem) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public CodeValidationResult validateCode(FhirContext theContext, String theCodeSystem, String theCode,
 			String theDisplay) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<IBaseResource> fetchAllConformanceResources(FhirContext theContext) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public ValueSetExpansionComponent expandValueSet(FhirContext theContext, ConceptSetComponent theInclude) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -64,7 +61,6 @@ public class ResearchValidationSupport implements IValidationSupport {
 
 	@Override
 	public CodeSystem fetchCodeSystem(FhirContext theContext, String theSystem) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -82,7 +78,7 @@ public class ResearchValidationSupport implements IValidationSupport {
 		  
 		  BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
 		  
-		  Bundle bundle = (Bundle) FhirContextFactory.getFhirContext().newJsonParser().parseResource(reader);
+		  Bundle bundle = (Bundle) FhirContextFactory.getFhirContext(FhirVersionEnum.DSTU3).newJsonParser().parseResource(reader);
 		  
 		  for (BundleEntryComponent next : bundle.getEntry()) {
 		        if (next.getResource() instanceof StructureDefinition) {

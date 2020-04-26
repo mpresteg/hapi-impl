@@ -14,6 +14,8 @@ import org.hl7.fhir.dstu3.model.Bundle.BundleEntryComponent;
 import org.hl7.fhir.dstu3.model.Bundle.BundleType;
 import org.hl7.fhir.dstu3.model.Resource;
 
+import ca.uhn.fhir.context.FhirContext;
+import ca.uhn.fhir.context.FhirVersionEnum;
 import ca.uhn.fhir.model.primitive.IdDt;
 
 public class StructureDefinitionBundler {
@@ -22,6 +24,8 @@ public class StructureDefinitionBundler {
 	public static final String RESOURCES_PATH = "src/main/resources/";
 	
 	public static final Set<String> structureDefinitions = new HashSet<String>();
+	
+	public static final FhirContext fhirContext = FhirContextFactory.getFhirContext(FhirVersionEnum.DSTU3);
 	
 	static {
 		structureDefinitions.add(RESEARCH_PATIENT_SD);
@@ -40,7 +44,7 @@ public class StructureDefinitionBundler {
 			InputStream stream = StructureDefinitionBundler.class.getClassLoader().getResourceAsStream(sdString);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
 			
-			Resource resource = (Resource) FhirContextFactory.getFhirContext().newJsonParser().parseResource(reader);
+			Resource resource = (Resource) fhirContext.newJsonParser().parseResource(reader);
 			BundleEntryComponent bec = new BundleEntryComponent();
 			bec.setResource(resource);
 			bundle.addEntry(bec);
@@ -52,7 +56,7 @@ public class StructureDefinitionBundler {
 	public static void writeBundledStructureDefinitions() {
 		Bundle bundle = bundleStructureDefinitions();
 		
-		String output = FhirContextFactory.getFhirContext().newJsonParser().setPrettyPrint(true).encodeResourceToString(bundle);
+		String output = fhirContext.newJsonParser().setPrettyPrint(true).encodeResourceToString(bundle);
 		
 		try {
 			FileWriter writer = new FileWriter(new File(RESOURCES_PATH + RESEARCH_SDS));

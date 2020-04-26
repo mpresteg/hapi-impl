@@ -10,6 +10,7 @@ import org.hl7.fhir.dstu3.hapi.validation.FhirInstanceValidator;
 import org.hl7.fhir.dstu3.hapi.validation.ValidationSupportChain;
 import org.hl7.fhir.dstu3.model.Resource;
 
+import ca.uhn.fhir.context.FhirVersionEnum;
 import ca.uhn.fhir.validation.FhirValidator;
 import ca.uhn.fhir.validation.ResultSeverityEnum;
 import ca.uhn.fhir.validation.SingleValidationMessage;
@@ -41,7 +42,7 @@ public class ValidationHelper {
 	}
 	
 	private ValidationResult doValidate(Resource resource, IValidationSupport... validationSupport) {
-		FhirValidator validator = FhirContextFactory.getFhirContext().newValidator();
+		FhirValidator validator = FhirContextFactory.getFhirContext(FhirVersionEnum.DSTU3).newValidator();
 		FhirInstanceValidator instanceValidator = new FhirInstanceValidator();
 		
 		validator.registerValidatorModule(instanceValidator);

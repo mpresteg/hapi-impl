@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.logging.Logger;
 
+import org.dash.hl7.dstu3.PatientPersistenceImpl;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
 import org.hl7.fhir.dstu3.model.Bundle;
@@ -25,7 +26,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import ca.uhn.fhir.context.FhirContext;
+import ca.uhn.fhir.context.FhirVersionEnum;
 import ca.uhn.fhir.rest.api.MethodOutcome;
+import ca.uhn.fhir.rest.client.api.IGenericClient;
 
 public class HapiTest {
 	private static final Logger LOGGER = Logger.getLogger(HapiTest.class.getName());
@@ -37,6 +40,14 @@ public class HapiTest {
 	private final String TEST_PATIENT_FILENAME = "testPatient.json";
 	
 	private Patient TEST_PATIENT;
+	
+	private static FhirContext fhirContext;
+	private static IGenericClient genericClient;
+	
+	static {
+		fhirContext = FhirContextFactory.getFhirContext(FhirVersionEnum.DSTU3);
+		genericClient = FhirContextFactory.getGenericClient(fhirContext);
+	}
 	
 	@AfterClass
 	public static void afterClass() throws Exception {
@@ -55,7 +66,7 @@ public class HapiTest {
 
 		LOGGER.info("Project base path is: {}" + path);
 
-		ourPort = new Integer(ClientFactory.PORT);
+		ourPort = new Integer(FhirContextFactory.PORT);
 		ourServer = new Server(ourPort);
 		
 		WebAppContext webAppContext = new WebAppContext();
@@ -72,12 +83,12 @@ public class HapiTest {
 		InputStream stream = HapiTest.class.getClassLoader().getResourceAsStream(TEST_PATIENT_FILENAME);
 			
 		BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-		TEST_PATIENT = (Patient) FhirContextFactory.getFhirContext().newJsonParser().parseResource(reader);
+		TEST_PATIENT = (Patient) fhirContext.newJsonParser().parseResource(reader);
 	}
 
 	@Test
 	public void test() {
-		PatientPersistenceHelper patientSearchHelper = new PatientPersistenceHelper();
+		PatientPersistenceImpl patientSearchHelper = new PatientPersistenceImpl(genericClient);
 		
 		if (patientSearchHelper.hasPatient(TEST_PATIENT.getIdentifierFirstRep())) {
 			LOGGER.info("Found test patient - updating");
@@ -120,14 +131,12 @@ public class HapiTest {
 		   .getRequest()
 		      .setUrl("Observation")
 		      .setMethod(HTTPVerb.POST);
-		
-		FhirContext fhirContext = FhirContextFactory.getFhirContext();
-		 
+				 
 		// Log the request
 		LOGGER.info(fhirContext.newXmlParser().setPrettyPrint(true).encodeResourceToString(bundle));
 		
 		// Post the transaction to the server
-		Bundle resp = ClientFactory.getGenericClient().transaction().withBundle(bundle).execute();
+		Bundle resp = genericClient.transaction().withBundle(bundle).execute();
 		 
 		// Log the response
 		LOGGER.info(fhirContext.newXmlParser().setPrettyPrint(true).encodeResourceToString(resp));

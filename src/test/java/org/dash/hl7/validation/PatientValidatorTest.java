@@ -16,6 +16,8 @@ import org.hl7.fhir.dstu3.model.Patient;
 import org.junit.Before;
 import org.junit.Test;
 
+import ca.uhn.fhir.context.FhirContext;
+import ca.uhn.fhir.context.FhirVersionEnum;
 import ca.uhn.fhir.validation.FhirValidator;
 import ca.uhn.fhir.validation.ResultSeverityEnum;
 import ca.uhn.fhir.validation.ValidationResult;
@@ -30,6 +32,12 @@ public class PatientValidatorTest {
 	private Patient TEST_PATIENT;
 	private Patient TEST_RESEARCH_PATIENT;
 	
+	private static FhirContext fhirContext;
+	
+	static {
+		fhirContext = FhirContextFactory.getFhirContext(FhirVersionEnum.DSTU3);
+	}
+	
 	@Before
 	public void setUp() throws IOException {
 		InputStream stream = PatientValidatorTest.class.getClassLoader().getResourceAsStream(TEST_PATIENT_FILENAME);
@@ -38,7 +46,7 @@ public class PatientValidatorTest {
 		}
 			
 		BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-		TEST_PATIENT = (Patient) FhirContextFactory.getFhirContext().newJsonParser().parseResource(reader);
+		TEST_PATIENT = (Patient) fhirContext.newJsonParser().parseResource(reader);
 		
 		reader.close();
 		stream.close();
@@ -49,12 +57,12 @@ public class PatientValidatorTest {
 		}
 			
 		reader = new BufferedReader(new InputStreamReader(stream));
-		TEST_RESEARCH_PATIENT = (Patient) FhirContextFactory.getFhirContext().newJsonParser().parseResource(reader);
+		TEST_RESEARCH_PATIENT = (Patient) fhirContext.newJsonParser().parseResource(reader);
 	}
 	
 	@Test
 	public void testValid() {
-		FhirValidator validator = FhirContextFactory.getFhirContext().newValidator();
+		FhirValidator validator = fhirContext.newValidator();
 
 		validator.registerValidatorModule(ValidatorModuleFactory.getInstance().getValidator(TEST_PATIENT));
 		
@@ -65,7 +73,7 @@ public class PatientValidatorTest {
 	
 	@Test
 	public void testInvalidWithObservation() {
-		FhirValidator validator = FhirContextFactory.getFhirContext().newValidator();
+		FhirValidator validator = fhirContext.newValidator();
 		validator.registerValidatorModule(ValidatorModuleFactory.getInstance().getValidator(TEST_PATIENT));
 		
 		ValidationResult validationResult = validator.validateWithResult(new Observation());
@@ -77,7 +85,7 @@ public class PatientValidatorTest {
 	
 	@Test
 	public void testInvalidNoBirthdate() {
-		FhirValidator validator = FhirContextFactory.getFhirContext().newValidator();
+		FhirValidator validator = fhirContext.newValidator();
 		validator.registerValidatorModule(ValidatorModuleFactory.getInstance().getValidator(TEST_PATIENT));
 		
 		Patient patientNoBirthdate = TEST_PATIENT.copy();
